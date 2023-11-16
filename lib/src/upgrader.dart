@@ -356,6 +356,9 @@ class Upgrader with WidgetsBindingObserver {
         _appStoreVersion = bestItem.versionString;
         _appStoreListingURL = bestItem.fileURL;
         _releaseNotes = bestItem.itemDescription;
+        if (debugLogging) {
+          print('upgrader: app store version: $_appStoreVersion');
+        }
       }
     } else {
       if (_packageInfo == null || _packageInfo!.packageName.isEmpty) {
