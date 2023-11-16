@@ -76,6 +76,12 @@ class Upgrader with WidgetsBindingObserver {
   /// The country code that will override the system locale. Optional. Used only for Android.
   final String? languageCode;
 
+  String? titleCustom;
+  String? messCustom;
+  String? titleBtnLaterCustom;
+  String? titleBtnIgnoreCustom;
+  String? titleBtnUpdateNowCustom;
+
   /// For debugging, always force the upgrade to be available.
   bool debugDisplayAlways;
 
@@ -171,6 +177,11 @@ class Upgrader with WidgetsBindingObserver {
     this.appcastConfig,
     this.appcast,
     UpgraderMessages? messages,
+    this.titleCustom,
+    this.messCustom,
+    this.titleBtnIgnoreCustom,
+    this.titleBtnLaterCustom,
+    this.titleBtnUpdateNowCustom,
     this.debugDisplayAlways = false,
     this.debugDisplayOnce = false,
     this.debugLogging = false,
@@ -477,8 +488,8 @@ class Upgrader with WidgetsBindingObserver {
         Future.delayed(const Duration(milliseconds: 0), () {
           _showDialog(
               context: context,
-              title: messages.message(UpgraderMessage.title),
-              message: message(),
+              title: titleCustom ?? messages.message(UpgraderMessage.title),
+              message: messCustom ?? message(),
               releaseNotes: shouldDisplayReleaseNotes() ? _releaseNotes : null,
               canDismissDialog: canDismissDialog);
         });
