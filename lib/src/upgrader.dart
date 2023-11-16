@@ -81,6 +81,7 @@ class Upgrader with WidgetsBindingObserver {
   String? titleBtnLaterCustom;
   String? titleBtnIgnoreCustom;
   String? titleBtnUpdateNowCustom;
+  bool? showTxtPrompt;
 
   /// For debugging, always force the upgrade to be available.
   bool debugDisplayAlways;
@@ -717,18 +718,18 @@ class Upgrader with WidgetsBindingObserver {
             Text(message),
             Padding(
                 padding: const EdgeInsets.only(top: 15.0),
-                child: Text(messages.message(UpgraderMessage.prompt) ?? '')),
+                child: (showTxtPrompt != null && showTxtPrompt == true) ? Text(messages.message(UpgraderMessage.prompt) ?? '') : null),
             if (notes != null) notes,
           ],
         )));
     final actions = <Widget>[
       if (showIgnore)
-        _button(cupertino, messages.message(UpgraderMessage.buttonTitleIgnore),
+        _button(cupertino, titleBtnIgnoreCustom ?? messages.message(UpgraderMessage.buttonTitleIgnore),
             context, () => onUserIgnored(context, true)),
       if (showLater)
-        _button(cupertino, messages.message(UpgraderMessage.buttonTitleLater),
+        _button(cupertino, titleBtnLaterCustom ?? messages.message(UpgraderMessage.buttonTitleLater),
             context, () => onUserLater(context, true)),
-      _button(cupertino, messages.message(UpgraderMessage.buttonTitleUpdate),
+      _button(cupertino, titleBtnUpdateNowCustom ?? messages.message(UpgraderMessage.buttonTitleUpdate),
           context, () => onUserUpdated(context, !blocked())),
     ];
 
