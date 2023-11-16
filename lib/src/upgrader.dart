@@ -183,6 +183,7 @@ class Upgrader with WidgetsBindingObserver {
     this.titleBtnIgnoreCustom,
     this.titleBtnLaterCustom,
     this.titleBtnUpdateNowCustom,
+    this.showTxtPrompt = false,
     this.debugDisplayAlways = false,
     this.debugDisplayOnce = false,
     this.debugLogging = false,
