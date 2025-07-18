@@ -761,8 +761,8 @@ class Upgrader with WidgetsBindingObserver {
                   '',
                   () => onUserUpdated(context, !blocked()),
             ),
-            Divider(height: 1, color: Colors.grey.shade300),
-            _cupertinoButton(
+            Divider(height: 1, color: Colors.red),
+            _cupertinoButtonCancel(
               context,
               titleBtnLaterCustom ??
                   messages.message(UpgraderMessage.buttonTitleLater) ??
@@ -783,6 +783,20 @@ class Upgrader with WidgetsBindingObserver {
   }
 
   Widget _cupertinoButton(BuildContext context, String text, VoidCallback onPressed) {
+    return SizedBox(
+      width: double.infinity,
+      child: CupertinoDialogAction(
+        onPressed: onPressed,
+        child: Text(
+          text,
+          style: const TextStyle(fontSize: 17),
+        ),
+      ),
+    );
+  }
+
+
+  Widget _cupertinoButtonCancel(BuildContext context, String text, VoidCallback onPressed) {
     return SizedBox(
       width: double.infinity,
       child: CupertinoDialogAction(
