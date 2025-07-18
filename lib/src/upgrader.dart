@@ -744,35 +744,33 @@ class Upgrader with WidgetsBindingObserver {
     return cupertino
         ? (useCupertinoVerticalButtons ?? false
         ? CupertinoAlertDialog(
-      title: Text(
-        title,
-        style: const TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 18,
-          color: Color(0xff222222),
-        ),
-      ),
+
+      title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Color(0xff222222)),),
       content: Padding(
         padding: const EdgeInsets.only(top: 8.0),
-        child: Text(
-          message,
-          style: const TextStyle(
-            fontWeight: FontWeight.w300,
-            fontSize: 14,
-            color: Color(0xff222222),
-          ),
-        ),
+        child: Text(message, style: const TextStyle(fontWeight: FontWeight.w300, fontSize: 14, color: Color(0xff222222)),),
       ),
       actions: [
-        _cupertinoButton(
-          context,
-          titleBtnUpdateNowCustom ?? messages.message(UpgraderMessage.buttonTitleUpdate) ?? '',
-              () => onUserUpdated(context, !blocked()),
-        ),
-        _cupertinoButtonCancel(
-          context,
-          titleBtnLaterCustom ?? messages.message(UpgraderMessage.buttonTitleLater) ?? '',
-              () => onUserLater(context, true),
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // const Divider(height: 1, color: Colors.red),
+            _cupertinoButton(
+              context,
+              titleBtnUpdateNowCustom ??
+                  messages.message(UpgraderMessage.buttonTitleUpdate) ??
+                  '',
+                  () => onUserUpdated(context, !blocked()),
+            ),
+            // const Divider(height: 1, color: Colors.red),
+            _cupertinoButtonCancel(
+              context,
+              titleBtnLaterCustom ??
+                  messages.message(UpgraderMessage.buttonTitleLater) ??
+                  '',
+                  () => onUserLater(context, true),
+            ),
+          ],
         ),
       ],
       insetAnimationDuration: const Duration(milliseconds: 200),
@@ -782,11 +780,7 @@ class Upgrader with WidgetsBindingObserver {
       content: content,
       actions: actions,
     ))
-        : AlertDialog(
-      title: textTitle,
-      content: content,
-      actions: actions,
-    );
+        : AlertDialog(title: textTitle, content: content, actions: actions);
   }
 
   Widget _cupertinoButton(BuildContext context, String text, VoidCallback onPressed) {
