@@ -762,7 +762,7 @@ class Upgrader with WidgetsBindingObserver {
                   '',
                   () => onUserUpdated(context, !blocked()),
             ),
-             // Divider(height: 1, color: Colors.black.withOpacity(0.3)),
+            const Divider(height: 1, color: Color(0xff747474)),
             _cupertinoButtonCancel(
               context,
               titleBtnLaterCustom ??
