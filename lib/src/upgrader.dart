@@ -747,7 +747,7 @@ class Upgrader with WidgetsBindingObserver {
       title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Color(0xff222222)),),
       content: Padding(
         padding: const EdgeInsets.only(top: 8.0),
-        child: content,
+        child: Text(message, style: const TextStyle(fontWeight: FontWeight.w300, fontSize: 14, color: Color(0xff222222)),),
       ),
       actions: [
         Column(
