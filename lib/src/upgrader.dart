@@ -744,16 +744,16 @@ class Upgrader with WidgetsBindingObserver {
     return cupertino
         ? (useCupertinoVerticalButtons ?? false
         ? CupertinoAlertDialog(
-      title: textTitle,
+      title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Color(0xff222222)),),
       content: Padding(
-        padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+        padding: const EdgeInsets.only(top: 8.0),
         child: content,
       ),
       actions: [
         Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Divider(height: 1, color: Colors.grey.shade300),
+            const Divider(height: 1, color: Color(0xffEEEEEE)),
             _cupertinoButton(
               context,
               titleBtnUpdateNowCustom ??
@@ -761,7 +761,7 @@ class Upgrader with WidgetsBindingObserver {
                   '',
                   () => onUserUpdated(context, !blocked()),
             ),
-            Divider(height: 1, color: Colors.red),
+            const Divider(height: 1, color: Color(0xffEEEEEE)),
             _cupertinoButtonCancel(
               context,
               titleBtnLaterCustom ??
@@ -789,7 +789,7 @@ class Upgrader with WidgetsBindingObserver {
         onPressed: onPressed,
         child: Text(
           text,
-          style: const TextStyle(fontSize: 17),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: Color(0xff1677FF)),
         ),
       ),
     );
@@ -803,7 +803,7 @@ class Upgrader with WidgetsBindingObserver {
         onPressed: onPressed,
         child: Text(
           text,
-          style: const TextStyle(fontSize: 17),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: Color(0xff999999)),
         ),
       ),
     );
