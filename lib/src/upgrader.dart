@@ -85,7 +85,7 @@ class Upgrader with WidgetsBindingObserver {
   String? titleBtnUpdateNowCustom;
   bool? showTxtPrompt;
   /// The text style for the cupertino dialog buttons. Optional.
-  final bool useCupertinoVerticalButtons;
+  final bool? useCupertinoVerticalButtons;
   /// For debugging, always force the upgrade to be available.
   bool debugDisplayAlways;
 
@@ -742,7 +742,7 @@ class Upgrader with WidgetsBindingObserver {
     ];
 
     return cupertino
-        ? (useCupertinoVerticalButtons
+        ? (useCupertinoVerticalButtons ?? false
         ? CupertinoAlertDialog(
       title: textTitle,
       content: Padding(
