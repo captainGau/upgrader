@@ -84,8 +84,7 @@ class Upgrader with WidgetsBindingObserver {
   String? titleBtnIgnoreCustom;
   String? titleBtnUpdateNowCustom;
   bool? showTxtPrompt;
-  /// The text style for the cupertino dialog buttons. Optional.
-  final bool useCupertinoVerticalButtons;
+
   /// For debugging, always force the upgrade to be available.
   bool debugDisplayAlways;
 
@@ -206,7 +205,6 @@ class Upgrader with WidgetsBindingObserver {
     this.minAppVersion,
     this.dialogStyle = UpgradeDialogStyle.material,
     this.cupertinoButtonTextStyle,
-    this.useCupertinoVerticalButtons = false,
     UpgraderOS? upgraderOS,
   })  : client = client ?? http.Client(),
         messages = messages ?? UpgraderMessages(),
@@ -417,7 +415,7 @@ class Upgrader with WidgetsBindingObserver {
     final playStore = PlayStoreSearchAPI(client: client);
     playStore.debugLogging = debugLogging;
     final response =
-        await (playStore.lookupById(id, country: country, language: language));
+    await (playStore.lookupById(id, country: country, language: language));
     if (response != null) {
       _appStoreVersion ??= playStore.version(response);
       _appStoreListingURL ??=
@@ -656,10 +654,10 @@ class Upgrader with WidgetsBindingObserver {
 
   void _showDialog(
       {required BuildContext context,
-      required String? title,
-      required String message,
-      required String? releaseNotes,
-      required bool canDismissDialog}) {
+        required String? title,
+        required String message,
+        required String? releaseNotes,
+        required bool canDismissDialog}) {
     if (debugLogging) {
       print('upgrader: showDialog title: $title');
       print('upgrader: showDialog message: $message');
@@ -720,16 +718,16 @@ class Upgrader with WidgetsBindingObserver {
         constraints: const BoxConstraints(maxHeight: 400),
         child: SingleChildScrollView(
             child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text(message),
-            Padding(
-                padding: const EdgeInsets.only(top: 15.0),
-                child: (showTxtPrompt != null && showTxtPrompt == true) ? Text(messages.message(UpgraderMessage.prompt) ?? '') : null),
-            if (notes != null) notes,
-          ],
-        )));
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text(message),
+                Padding(
+                    padding: const EdgeInsets.only(top: 15.0),
+                    child: (showTxtPrompt != null && showTxtPrompt == true) ? Text(messages.message(UpgraderMessage.prompt) ?? '') : null),
+                if (notes != null) notes,
+              ],
+            )));
     final actions = <Widget>[
       if (showIgnore)
         _button(cupertino, titleBtnIgnoreCustom ?? messages.message(UpgraderMessage.buttonTitleIgnore),
@@ -742,65 +740,18 @@ class Upgrader with WidgetsBindingObserver {
     ];
 
     return cupertino
-        ? (useCupertinoVerticalButtons
         ? CupertinoAlertDialog(
-      title: textTitle,
-      content: Padding(
-        padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-        child: content,
-      ),
-      actions: [
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _cupertinoButton(
-              context,
-              titleBtnUpdateNowCustom ??
-                  messages.message(UpgraderMessage.buttonTitleUpdate) ??
-                  '',
-                  () => onUserUpdated(context, !blocked()),
-            ),
-            Divider(height: 1, color: Colors.grey.shade300),
-            _cupertinoButton(
-              context,
-              titleBtnLaterCustom ??
-                  messages.message(UpgraderMessage.buttonTitleLater) ??
-                  '',
-                  () => onUserLater(context, true),
-            ),
-          ],
-        ),
-      ],
-      insetAnimationDuration: const Duration(milliseconds: 200),
-    )
-        : CupertinoAlertDialog(
-      title: textTitle,
-      content: content,
-      actions: actions,
-    ))
+        title: textTitle, content: content, actions: actions)
         : AlertDialog(title: textTitle, content: content, actions: actions);
-  }
-
-  Widget _cupertinoButton(BuildContext context, String text, VoidCallback onPressed) {
-    return SizedBox(
-      width: double.infinity,
-      child: CupertinoDialogAction(
-        onPressed: onPressed,
-        child: Text(
-          text,
-          style: const TextStyle(fontSize: 17),
-        ),
-      ),
-    );
   }
 
   Widget _button(bool cupertino, String? text, BuildContext context,
       VoidCallback? onPressed) {
     return cupertino
         ? CupertinoDialogAction(
-            textStyle: cupertinoButtonTextStyle,
-            onPressed: onPressed,
-            child: Text(text ?? ''))
+        textStyle: cupertinoButtonTextStyle,
+        onPressed: onPressed,
+        child: Text(text ?? ''))
         : TextButton(onPressed: onPressed, child: Text(text ?? ''));
   }
 
