@@ -753,7 +753,7 @@ class Upgrader with WidgetsBindingObserver {
         Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Divider(height: 5, color: Color(0xffEEEEEE)),
+             const Divider(height: 5, color: Color(0xffEEEEEE), thickness: 1 ),
             _cupertinoButton(
               context,
               titleBtnUpdateNowCustom ??
@@ -761,7 +761,7 @@ class Upgrader with WidgetsBindingObserver {
                   '',
                   () => onUserUpdated(context, !blocked()),
             ),
-            const Divider(height: 5, color: Color(0xffEEEEEE)),
+             Divider(height: 5, color: Color(0xffEEEEEE), thickness: 1,),
 
             _cupertinoButtonCancel(
               context,
