@@ -751,27 +751,7 @@ class Upgrader with WidgetsBindingObserver {
         child: Text(message, style: const TextStyle(fontWeight: FontWeight.w300, fontSize: 14, color: Color(0xff222222)),),
       ),
       actions: [
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            // const Divider(height: 1, color: Colors.red),
-            _cupertinoButton(
-              context,
-              titleBtnUpdateNowCustom ??
-                  messages.message(UpgraderMessage.buttonTitleUpdate) ??
-                  '',
-                  () => onUserUpdated(context, !blocked()),
-            ),
-            const Divider(height: 1, color: Color(0xff747474)),
-            _cupertinoButtonCancel(
-              context,
-              titleBtnLaterCustom ??
-                  messages.message(UpgraderMessage.buttonTitleLater) ??
-                  '',
-                  () => onUserLater(context, true),
-            ),
-          ],
-        ),
+         Container()
       ],
       insetAnimationDuration: const Duration(milliseconds: 200),
     )
