@@ -745,7 +745,7 @@ class Upgrader with WidgetsBindingObserver {
         ? (useCupertinoVerticalButtons ?? false
         ? AlertDialog(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0),
+        borderRadius: BorderRadius.circular(16.0),
       ),
       title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Color(0xff222222)), textAlign: TextAlign.center,),
       content: Text(message, style: const TextStyle(fontWeight: FontWeight.w300, fontSize: 14, color: Color(0xff222222)), textAlign: TextAlign.center,),
