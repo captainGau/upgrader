@@ -751,12 +751,7 @@ class Upgrader with WidgetsBindingObserver {
         child: Text(message, style: const TextStyle(fontWeight: FontWeight.w300, fontSize: 14, color: Color(0xff222222)),),
       ),
       actions: [
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Color(0xff222222)))
-          ],
-        ),
+        Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Color(0xff222222)))
       ],
       insetAnimationDuration: const Duration(milliseconds: 200),
     )
