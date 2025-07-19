@@ -778,7 +778,7 @@ class Upgrader with WidgetsBindingObserver {
         : CupertinoAlertDialog(
       title: textTitle,
       content: content,
-      actions: actions,
+      // actions: actions,
     ))
         : AlertDialog(title: textTitle, content: content, actions: actions);
   }
