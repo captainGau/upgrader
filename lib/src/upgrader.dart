@@ -743,7 +743,7 @@ class Upgrader with WidgetsBindingObserver {
 
     return cupertino
         ? (useCupertinoVerticalButtons ?? false
-        ? CupertinoAlertDialog(
+        ? AlertDialog(
 
       title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Color(0xff222222)),),
       content: Padding(
@@ -751,9 +751,29 @@ class Upgrader with WidgetsBindingObserver {
         child: Text(message, style: const TextStyle(fontWeight: FontWeight.w300, fontSize: 14, color: Color(0xff222222)),),
       ),
       actions: [
-        Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Color(0xff222222)))
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // const Divider(height: 1, color: Colors.red),
+            _cupertinoButton(
+              context,
+              titleBtnUpdateNowCustom ??
+                  messages.message(UpgraderMessage.buttonTitleUpdate) ??
+                  '',
+                  () => onUserUpdated(context, !blocked()),
+            ),
+            const Divider(height: 1, color: Color(0xff747474)),
+            _cupertinoButtonCancel(
+              context,
+              titleBtnLaterCustom ??
+                  messages.message(UpgraderMessage.buttonTitleLater) ??
+                  '',
+                  () => onUserLater(context, true),
+            ),
+          ],
+        ),
       ],
-      insetAnimationDuration: const Duration(milliseconds: 200),
+      // insetAnimationDuration: const Duration(milliseconds: 200),
     )
         : CupertinoAlertDialog(
       title: textTitle,
