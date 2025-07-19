@@ -775,11 +775,9 @@ class Upgrader with WidgetsBindingObserver {
       ],
       insetAnimationDuration: const Duration(milliseconds: 200),
     )
-        : CupertinoAlertDialog(
-      title: textTitle,
-      content: content,
-      // actions: actions,
-    ))
+        : Container(
+        child: Text('CupertinoDialogAction not supported'),
+      ))
         : AlertDialog(title: textTitle, content: content, actions: actions);
   }
 
