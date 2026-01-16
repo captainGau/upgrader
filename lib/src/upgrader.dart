@@ -759,6 +759,11 @@ class Upgrader with WidgetsBindingObserver {
                         titleBtnUpdateNowCustom ?? messages.message(UpgraderMessage.buttonTitleUpdate) ?? '',
                         () {
                           print('abc');
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Hello SnackBar'),
+                            ),
+                          );
                         },
                       ),
                       const Divider(
