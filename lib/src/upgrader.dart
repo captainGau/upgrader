@@ -751,28 +751,29 @@ class Upgrader with WidgetsBindingObserver {
       content: Text(message, style: const TextStyle(fontWeight: FontWeight.w300, fontSize: 14, color: Color(0xff222222)), textAlign: TextAlign.center,),
       actions: [
         Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-             const Divider(height: 5, color: Color(0xffEEEEEE), thickness: 1 ),
-            _cupertinoButton(
-              context,
-              titleBtnUpdateNowCustom ??
-                  messages.message(UpgraderMessage.buttonTitleUpdate) ??
-                  '',
-                  () => onUserUpdated(context, !blocked()),
-            ),
-             const  Divider(height: 5, color: Color(0xffEEEEEE), thickness: 1,),
-
-            _cupertinoButtonCancel(
-              context,
-              titleBtnLaterCustom ??
-                  messages.message(UpgraderMessage.buttonTitleLater) ??
-                  '',
-                  () => onUserLater(context, true),
-            ),
-          ],
-        ),
-      ],
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Divider(height: 5, color: Color(0xffEEEEEE), thickness: 1),
+                      _cupertinoButton(
+                        context,
+                        titleBtnUpdateNowCustom ?? messages.message(UpgraderMessage.buttonTitleUpdate) ?? '',
+                        () {
+                          print('abc');
+                        },
+                      ),
+                      const Divider(
+                        height: 5,
+                        color: Color(0xffEEEEEE),
+                        thickness: 1,
+                      ),
+                      _cupertinoButtonCancel(
+                        context,
+                        titleBtnLaterCustom ?? messages.message(UpgraderMessage.buttonTitleLater) ?? '',
+                        () => onUserLater(context, true),
+                      ),
+                    ],
+                  ),
+                ],
       // insetAnimationDuration: const Duration(milliseconds: 200),
     )
         : CupertinoAlertDialog(
